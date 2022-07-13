@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Addition of Two Number</title>
+</head>
+<body>
+    {% block content %}
+    <form action="add" method="get">
+        {% csrf_token %}
+                    Enter a 1st number: <input type="text" name="num1"  placeholder="enter the number"><br><br>
+                    Enter a 2st number: <input type="text" name="num2" placeholder="enter the number"><br><br>
+                    <input type="submit"><br>
+                    
+     </form>
+    {% endblock%}
+</body>
+</html>
