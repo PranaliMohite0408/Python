@@ -1,0 +1,152 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django CRUD Operation</title>
+	
+    <link rel="stylesheet" type="text/css" href="{%static 'E:\Python_Programs\Django\Student_Registration\static\style.css' %}">
+</head>
+<body>
+    {% block content %}
+    <form id="form1"> 
+        {% csrf_token %}       
+        <table>
+            <span id="header">
+                <h1>Student Registration</h1>
+                <button id="btn" onclick="addEventListener()"><a href="#form2">Add Student</a></button>        
+            </span>
+            <thead>
+                <tr>
+                   <th>Name</th>
+                   <th>Mob No</th>
+                   <th>Email</th>
+                   <th>Address</th>
+                   <th>Action</th>
+                </tr>
+             </thead>
+             <tbody>
+                 {% for i in stu %}
+                <tr>
+                   <td>{{i.name}}</td>
+                   <td>{{i.mob_no}}</td>
+                   <td>{{i.email}}</td>
+                   <td>{{i.address}}</td>
+                   <td>
+                         <a href="#formupdt-{{forloop.counter}}" id="update" onclick="toggleHide()"  class="edit">Update</a>
+                         <a href="#" id="delete" onclick=""  class="delete">Delete</a>
+                   </td>
+                </tr>
+                {% endfor %}
+             </tbody>
+        </table>
+    </form>
+   
+<!--Add Model-->
+  
+    <form action="{% url 'add' %}" method="POST" id="form2">
+		{% csrf_token %}
+        <div id="container">
+			<h2>Add Student</h2>
+			<label>Name:</label><br>
+			<input type="text" name="name"><br>
+
+			<label>Mob No:</label><br>
+			<input name="mob_no" type="number"><br>
+
+			<label>Email ID:</label><br>
+			<input type="email" name="email"><br>
+
+			<label>Address:</label><br>
+			<input type="text" name="address"><br><br>
+			
+			<span class="span">
+				<button type="submit" value="Add" class="btnn">Save</button>
+				<button value="Cancle" class="btnn">Cancle</button>
+			</span>
+		</div>
+
+    </form>
+    <!--Update Model-->
+   {% for i in stu %}
+    <form action="{% url 'edit' %}" method="POST" id="formupdt">
+		{% csrf_token %}
+        <div class="container">
+			<h2>Update Student</h2>
+
+			<label>Name:</label><br>
+			<input name="name" value="{{i.name}}" type="text"><br>
+
+			<label>Mob No:</label><br>
+			<input name="mob_no" value="{{i.mob_no}}" type="number"><br>
+
+			<label>Email ID:</label><br>
+			<input name="email" value="{{i.email}}" type="email"><br>
+
+			<label>Address:</label><br>
+			<input name="address" value="{{i.address}}" type="text"><br><br>
+			
+			<span class="span">
+				<button type="submit" value="OK" class="btnn"><a>Update</a></button>
+				<button class="btnn" value="Cancle">Cancle</button>
+			</span>
+		</div>
+    </form>
+    {%endfor%}
+
+    {% endblock %}
+    <script>
+        function  toggleHide(){
+            let btn1 = document.getElementById('update');
+            let form1 = document.getElementById('form1');
+            let form2 = document.getElementById('form2');
+            let form3 = document.getElementById('formupdt');
+
+			
+            if(form3.style.display == 'none'){
+                form3.style.display = 'block';
+                form1.style.display = 'none';
+                form2.style.display = 'none';
+            }
+            else{
+                form3.style.display = 'none';
+            }
+        }
+
+        let btn = document.getElementById('btn');
+        btn.addEventListener('click', () => {
+            let form = document.getElementById('form2');
+            let form1 = document.getElementById('form1');
+            let btn = document.getElementById('btn');
+
+            if (form.style.display === 'none') {
+                form.style.display = 'block';
+                form1.style.display = 'none';
+            }
+            else {
+                form.style.display = 'none';
+            }
+        });
+/*
+        let btn1 = document.getElementById('update');
+        btn1.addEventListener('click','load',() =>{
+            let form2 = document.getElementById('form1');
+            let form3 = document.getElementById('form2');
+            let form4 = document.getElementById('formupdt');
+            
+            if(form4.style.display == 'none'){
+                form4.style.display = 'block';
+                form2.style.display = 'none';
+                form3.style.display = 'none';
+            }
+            else{
+                form4.style.display = 'none';
+            }
+        });
+
+        */
+    </script>
+</body>
+</html>

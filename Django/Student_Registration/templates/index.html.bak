@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django CRUD Operation</title>
+	
+    <!-- <link rel="stylesheet" type="text/css" href="{%static 'E:\Python_Programs\Django\Student_Registration\static\style.css' %}"> -->
+	
+	<style>
+		#form2{
+			display:none;
+		}
+	</style>
+</head>
+<body>
+    <form id="form1">        
+        <table>
+            <span id="header">
+                <h1>Student Registration</h1>
+                <button id="btn" onclick="toggleHide()">Add Student</button>
+                
+            </span>
+            <thead>
+                <tr>
+                   <th>Name</th>
+                   <th>Mob No</th>
+                   <th>Email</th>
+                   <th>Address</th>
+                   <th>Action</th>
+                </tr>
+             </thead>
+             <tbody>
+                <tr>
+                   <td>Amey</td>
+                   <td>1234567896</td>
+                   <td>abc@gmail.com</td>
+                   <td>Karad</td>
+                   <td>
+                         <a href="#" class="edit">Update</a>
+                         <a href="#" class="delete">Delete</a>
+                   </td>
+                </tr>
+             </tbody>
+        </table>
+    </form>
+
+    <form action="home" id="form2">
+		
+        <div>
+			<h2>Add Student</h2>
+			<label>Name:</label><br>
+			<input type="text"><br>
+
+			<label>Mob No:</label><br>
+			<input type="number"><br>
+
+			<label>Email ID:</label><br>
+			<input type="email"><br>
+
+			<label>Address:</label><br>
+			<input type="text"><br>
+			
+			<span>
+				<button>Save</button>
+				<button>Cancle</button>
+			</span>
+		</div>
+
+    </form>
+
+    <script>
+        function toggleHide(){
+            let btn = document.getElementById('btn');
+            let form = document.getElementById('form2');
+			
+            if(form.style.display == 'none'){
+                form.style.display = 'block';
+            }
+            else{
+                form.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
