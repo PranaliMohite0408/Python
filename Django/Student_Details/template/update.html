@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+	<style>
+		#formupdt{
+			align-items: center;
+			margin-left: 400px;
+			margin-top: 0px;
+		}
+		#formupdt>div{
+			display: flex;
+			margin-top: 0px;
+			justify-content: center;
+			margin: 40px;
+			padding:10px;
+			height: 500px;
+			width: 350px;
+			flex-direction:column;
+			border: 2px solid whitesmoke;
+			background-color:#fff;
+		
+		}
+		input{
+			display: center;
+			font-size: 20px;
+			border-radius: 2px;
+			width: 80%;
+		}
+		.span{
+		  margin-left: 100px;
+		}
+		.btnn{
+			padding:10px;
+			margin: 10px;
+			background-color: green;
+			color: white;
+			font-size: 20px;
+			letter-spacing: 1px;
+			cursor: pointer;
+			font-family: Georgia, 'Times New Roman', Times, serif;
+		}
+		h2{
+			font-size: 35px;
+			font-family: Georgia, 'Times New Roman', Times, serif;
+			font-style: bold;
+			align-items: center;
+			margin-top: 0px;
+		}
+		.container>input,label{
+			font-size:20px;
+			font-family:Georgia, 'Times New Roman', Times, serif;
+		}
+	</style>
+</head>
+<body>
+	{% block content %}
+    <form action="{% url 'update' stu.id %}" method="POST" id="formupdt">
+        {% csrf_token %}
+        <div class="container">
+			<h2>Update Student</h2>
+
+			<label>Name:</label><br>
+			<input name="name" value="{{ stu.name }}" type="text"><br>
+
+			<label>Mob No:</label><br>
+			<input name="mob_no" value="{{stu.mob_no}}" type="number"><br>
+
+			<label>Email ID:</label><br>
+			<input name="email" value="{{ stu.email }}" type="email"><br>
+
+			<label>Address:</label><br>
+			<input name="address" value="{{ stu.address }}" type="text"><br><br>
+			
+			<span class="span">
+				<button type="submit" value="OK" class="btnn"><a>Update</a></button>
+			</span>
+		</div>
+    </form>
+	{% endblock %}
+</body>
+</html>
